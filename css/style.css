@@ -1,0 +1,127 @@
+:root {
+    --navColor: rgb(46, 46, 46);
+    --bgColor: rgb(69, 150, 243);
+    --layoutColor: rgb(224, 222, 222);
+    --textColorDark: rgb(24, 22, 22);
+    --textColorLight: rgb(240, 240, 240);
+    --btnColor: rgb(226, 225, 225);
+}
+
+body {
+    background: radial-gradient(ellipse, #6f77e7, transparent), radial-gradient(ellipse, #e4671f, transparent);
+    background-size: contain;
+    background-color: var(--bgColor);
+    color: var(--textColorDark);
+    margin: 0, 0, 0, 0;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.nav-container {
+    border-bottom: 0.5px solid;
+    border-radius: 1em;
+    background-color: var(--navColor);
+    width: 100%;
+}
+
+#nav {
+    width: 100%;
+    height: 3.3em;
+    display: grid;
+    grid-template-columns: 0.6fr 0.2fr 0.8fr;
+    color: var(--textColorLight);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    max-width: 100%;
+    margin: auto;
+}
+
+.logo {
+    padding: auto;
+    margin: auto;
+    font-weight: bold;
+    font-size: 1.7em;
+}
+
+.nav-login {
+    margin: auto;
+    margin-right: 13%;
+}
+
+.nav-login a {
+    margin: auto;
+    color: var(--textColorLight);
+    text-decoration: none;
+}
+
+.nav-list {
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.nav-list li {
+    display: inline;
+    padding-right: 1em;
+}
+
+#frm {
+    width: 30em;
+    margin: auto;
+    text-align: center;
+}
+
+.frm-table {
+    padding-top: 2em;
+    margin: auto;
+}
+
+label {
+    font-size: large;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+td {
+    text-align: center;
+}
+
+.text-box {
+    height: 2.5em;
+    border-radius: 0.5em;
+}
+
+#btn {
+    height: 2em;
+    width: 6em;
+    background-color: var(--btnColor);
+    font-size: larger;
+    font-weight: bold;
+}
+
+#status {
+    text-align: center;
+}
+
+.body-container {
+    text-align: center;
+    width: fit-content;
+    margin: auto;
+}
+
+.main-body {
+    padding: 1em;
+    text-align: center;
+    margin: auto;
+    margin-top: 1em;
+    border-radius: 1em;
+    background-color: var(--layoutColor);
+    max-width: 40em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.5em;
+}
+
+#guest-list {
+    list-style-type: none;
+    margin: auto;
+    width: fit-content;
+    padding-left: 0%;
+}
