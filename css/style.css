@@ -1,6 +1,6 @@
 :root {
     --navColor: rgb(46, 46, 46);
-    --bgColor: rgb(69, 150, 243);
+    --bgColor: rgb(69, 194, 243);
     --layoutColor: rgb(224, 222, 222);
     --textColorDark: rgb(24, 22, 22);
     --textColorLight: rgb(240, 240, 240);
@@ -117,6 +117,10 @@ td {
     max-width: 40em;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 1.5em;
+}
+
+.quiz {
+    text-align: left;
 }
 
 #guest-list {
