@@ -9,6 +9,7 @@ if(isset($_POST['username']))
    
     //connect the server to the database
     include("../db/dbConnection.php");
+    require_once '../db/dbFunctions.inc.php';
     
     //Prevent sql injection
     $username=stripcslashes($username);
@@ -19,20 +20,8 @@ if(isset($_POST['username']))
 
 
     //Query the database
-    $result=mysqli_query($conn,"select * From user where username ='$username' ") or die("failed to quert db".mysqli_error($conn));
 
-    $row = mysqli_fetch_array($result);
+    loginUser($conn, $username, $password);
 
-
-    if($row!= null && $row['username'] == $username && crypt($password, $row['password']) == $row['password'])
-    {
-        $_SESSION['username']=$username;
-       echo"success";
-       
-    }else
-    {
-        echo("<b>Login Failed!</b> <br>please enter correct username and password");
-      
-    }
 };
 ?>

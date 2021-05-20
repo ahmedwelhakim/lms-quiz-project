@@ -1,22 +1,22 @@
-CREATE DATABASE quizdbase;
+CREATE DATABASE lmsbase;
 
-USE  quizdbase;
+USE  lmsbase;
 
 CREATE TABLE questions(
     qid INT(250) AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    question VARCHAR(250),
-    ans_id INt(250) REFERENCES answers(ans_id));
 
-CREATE TABLE answers(
-    aid INT(250) AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    answer VARCHAR(250),
-    ans_id INt(250) );
+    question VARCHAR(250) NOT NULL,
+    choice1 VARCHAR(250),
+    choice2 VARCHAR(250),
+    choice3 VARCHAR(250),
+    choice4 VARCHAR(250),
+    answer VARCHAR(250) NOT NULL);
 
-CREATE TABLE user(
-    uid INT(250) AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    username VARCHAR(250),
-    password VARCHAR(250),
-    totalques INt(250),
-    answercorrect INT(250),
-    type CHARACTER);
+
+CREATE TABLE users(
+    uid INT(11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    userName VARCHAR(128) NOT NULL,
+    userPwd VARCHAR(128) NOT NULL,
+    userJob VARCHAR(128) NOT NULL);
+
 

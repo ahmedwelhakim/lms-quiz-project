@@ -1,14 +1,14 @@
 <?php
 
-    $host="localhost";
-    $user="root";
-    $pass="";
-    $database="quizdbase";
+    $ServerName="localhost";
+    $dBusername="root";
+    $dBpwd="";
+    $dBName="lmsdb";
 
-    $conn=mysqli_connect($host,$user,$pass, $database);
+    $conn=mysqli_connect($ServerName,$dBusername,$dBpwd, $dBName);
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
     }
   
     
