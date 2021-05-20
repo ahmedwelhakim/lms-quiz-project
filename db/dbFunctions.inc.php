@@ -73,21 +73,17 @@ function loginUser($conn, $name, $pwd)
     {
         if(password_verify($pwd, $row["userPwd"]))
         {
-            header('location:../homepage.php');
-            session_start();
             $_SESSION['username'] = $row["userName"];
-            exit();
+            echo "success";
         }
         else
         {
-            header("location: ../login.php?error=wrongPassword");
-            exit();
+            echo("<b>Login Failed!</b> <br>please enter correct username and password");
         }
     }
     else
     {
-        header("location: ../login.php?error=wrongUserName");
-        exit();
+        echo("<b>Login Failed!</b> <br>please enter correct username and password");
     }
     mysqli_stmt_close($stmt);
 }
