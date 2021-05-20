@@ -19,12 +19,12 @@ if(isset($_POST['username']))
 
 
     //Query the database
-    $result=mysqli_query($conn,"select * From quizregistration where user ='$username' ") or die("failed to quert db".mysqli_error($conn));
+    $result=mysqli_query($conn,"select * From user where username ='$username' ") or die("failed to quert db".mysqli_error($conn));
 
     $row = mysqli_fetch_array($result);
 
 
-    if($row!= null && $row['user'] == $username && crypt($password, $row['pass']) == $row['pass'])
+    if($row!= null && $row['username'] == $username && crypt($password, $row['password']) == $row['password'])
     {
         $_SESSION['username']=$username;
        echo"success";
