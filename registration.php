@@ -27,7 +27,7 @@
     <div class="body-container">
         <div class="main-body">
             <div id="frm">
-            <h3>Registration Form</h3>
+                <h3>Registration Form</h3>
                 <form method="post" action="javascript:void(0)">
 
                     <table class="frm-table">
@@ -51,6 +51,19 @@
                             </td>
                         </tr>
 
+                        <tr>
+                            <td>
+                                <label>Type</label>
+                            </td>
+                            <td>
+
+                                <input type="radio" id="student" name="type" value="S">
+                                <label for="student">student</label>
+                                <input type="radio" id="proffessor" name="type" value="P">
+                                <label for="proffessor">Proffessor</label><br>
+
+                            </td>
+                        </tr>
                         <tr>
                             <td></td>
                             <td>

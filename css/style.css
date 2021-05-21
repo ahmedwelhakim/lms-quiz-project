@@ -73,6 +73,7 @@ body {
 .frm-table {
     padding-top: 2em;
     margin: auto;
+    text-align: left;
 }
 
 label {
@@ -81,7 +82,7 @@ label {
 }
 
 td {
-    text-align: center;
+    text-align: left;
 }
 
 .text-box {

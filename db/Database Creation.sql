@@ -4,6 +4,7 @@ USE  lmsbase;
 
 CREATE TABLE questions(
     qid INT(250) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+
     question VARCHAR(250) NOT NULL,
     choice1 VARCHAR(250),
     choice2 VARCHAR(250),
@@ -11,9 +12,11 @@ CREATE TABLE questions(
     choice4 VARCHAR(250),
     answer INT(250) NOT NULL);
 
+
 CREATE TABLE users(
     uid INT(11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     userName VARCHAR(128) NOT NULL,
     userPwd VARCHAR(128) NOT NULL,
     userJob VARCHAR(128) NOT NULL);
+
 

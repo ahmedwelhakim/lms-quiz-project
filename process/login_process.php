@@ -20,6 +20,8 @@ if(isset($_POST['username']))
 
 
     //Query the database
+
     loginUser($conn, $username, $password);
+
 };
 ?>
