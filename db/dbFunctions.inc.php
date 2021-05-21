@@ -85,7 +85,7 @@ function createQus($conn, $question, $choice1, $choice2, $choice3, $choice4, $an
 
 function createUser($conn, $name, $pwd, $job)
 {
-    if(checkDub($conn, $name))
+    if(checkDub($conn, $name) != false)
     {
        echo "username already exist\n";
        exit();
@@ -118,7 +118,8 @@ function checkDub($conn, $userName)
     }
     mysqli_stmt_bind_param($stmt, "s", $userName);
     mysqli_stmt_execute($stmt);
-    if (mysqli_stmt_get_result($stmt))
+    $data = mysqli_stmt_get_result($stmt);
+    if (mysqli_fetch_assoc($data))
     {
         return true;
     }
