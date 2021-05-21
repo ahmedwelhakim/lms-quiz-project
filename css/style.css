@@ -1,6 +1,6 @@
 :root {
     --navColor: rgb(46, 46, 46);
-    --bgColor: rgb(69, 194, 243);
+    --bgColor: rgb(69, 101, 241);
     --layoutColor: rgb(224, 222, 222);
     --textColorDark: rgb(24, 22, 22);
     --textColorLight: rgb(240, 240, 240);
@@ -8,7 +8,7 @@
 }
 
 body {
-    background: radial-gradient(ellipse, #6f77e7, transparent), radial-gradient(ellipse, #e4671f, transparent);
+    background: radial-gradient(ellipse, #12e0e0, transparent), radial-gradient(ellipse, #e43d1f, transparent);
     background-size: contain;
     background-color: var(--bgColor);
     color: var(--textColorDark);
@@ -81,7 +81,7 @@ label {
 }
 
 td {
-    text-align: center;
+    text-align: left;
 }
 
 .text-box {

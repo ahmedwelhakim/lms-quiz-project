@@ -50,7 +50,17 @@
 
                             </td>
                         </tr>
-
+                        <tr>
+                            <td>
+                                <label>Type</label>
+                            </td>
+                            <td>
+                                <input type="radio" id="student" name="type" value="student">
+                                <label for="student">student</label>
+                                <input type="radio" id="proffessor" name="type" value="proffessor">
+                                <label for="proffessor">Proffessor</label><br>
+                            </td>
+                        </tr>
                         <tr>
                             <td></td>
                             <td>
