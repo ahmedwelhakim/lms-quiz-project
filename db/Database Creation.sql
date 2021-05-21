@@ -9,7 +9,7 @@ CREATE TABLE questions(
     choice2 VARCHAR(250),
     choice3 VARCHAR(250),
     choice4 VARCHAR(250),
-    answer VARCHAR(250) NOT NULL);
+    answer INT(250) NOT NULL);
 
 CREATE TABLE users(
     uid INT(11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
