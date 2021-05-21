@@ -10,7 +10,9 @@ function checkAns($conn, $questionID, $ansId)
     }
     mysqli_stmt_bind_param($stmt, "ss", $questionID, $ansId);
     mysqli_stmt_execute($stmt);
-    if (mysqli_stmt_get_result($stmt))
+    $result =mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($result))
     {
         return true;
     }
