@@ -85,6 +85,11 @@ function createQus($conn, $question, $choice1, $choice2, $choice3, $choice4, $an
 
 function createUser($conn, $name, $pwd, $job)
 {
+    if(checkDub($conn, $name))
+    {
+       echo "username already exist\n";
+       exit();
+    }
     $sql = "INSERT INTO users (userName, userPwd, userJob) values (?,?,?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt,$sql))
