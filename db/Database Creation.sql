@@ -13,7 +13,8 @@ CREATE TABLE questions(
 
 CREATE TABLE users(
     uid INT(11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    userName VARCHAR(128) NOT NULL,
+    userName VARCHAR(128) NOT NULL  ,
     userPwd VARCHAR(128) NOT NULL,
     userJob VARCHAR(128) NOT NULL);
 
+ALTER TABLE `users` ADD UNIQUE(`userName`);

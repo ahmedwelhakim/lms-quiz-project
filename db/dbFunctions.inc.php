@@ -122,7 +122,8 @@ function loginUser($conn, $name, $pwd)
         if(password_verify($pwd, $row["userPwd"]))
         {
             $_SESSION['username'] = $row["userName"];
-            echo "success";
+            
+            echo ($row['userJob']);
         }
         else
         {
