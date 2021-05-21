@@ -47,6 +47,29 @@ function getQuestion($conn, $questionID)
     mysqli_stmt_close($stmt);
 }
 
+function deleteQuestions($conn)
+{
+    for ($i=0; $i < 300; $i++) 
+    { 
+        $sql = "SELECT * FROM questions WHERE qid = ?;";
+        $stmt = mysqli_stmt_init($conn);
+        if (!mysqli_stmt_prepare($stmt,$sql))
+        {
+            header("location: ../index.php?errpr=stmtfailed");
+            exit();
+        }
+        mysqli_stmt_bind_param($stmt, "s", $i);
+        mysqli_stmt_execute($stmt);
+        $result =mysqli_stmt_get_result($stmt);
+
+        if (!mysqli_fetch_assoc($result))
+        {
+            exit();
+        }
+        mysqli_stmt_close($stmt);
+    }
+}
+
 function getAns($conn, $questionID)
 {
     $sql = "SELECT * FROM questions WHERE qid = ?;";
