@@ -101,6 +101,28 @@ function createUser($conn, $name, $pwd, $job)
     mysqli_stmt_close($stmt);
     
 }
+
+function checkDub($conn, $userName)
+{
+    $sql = "SELECT * FROM users WHERE userName = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt,$sql))
+    {
+        header("location: ../index.php?errpr=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "s", $userName);
+    mysqli_stmt_execute($stmt);
+    if (mysqli_stmt_get_result($stmt))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    mysqli_stmt_close($stmt);
+}
     
 function loginUser($conn, $name, $pwd)
 {
@@ -122,8 +144,7 @@ function loginUser($conn, $name, $pwd)
         if(password_verify($pwd, $row["userPwd"]))
         {
             $_SESSION['username'] = $row["userName"];
-            
-            echo ($row['userJob']);
+            echo "success";
         }
         else
         {
