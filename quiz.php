@@ -54,16 +54,22 @@ include("db/dbFunctions.inc.php");
                         <br>
                         <p class="card-header"> <?php echo $i . " : " . $result1['question'] . "<hr>"; ?> </p>
                         <?php
-                        $z = 1;
-                        for ($z = 1; $z < 5; $z++) {
+                        for ($z = 1; $z < 5; $z++)
+                        {
                             $mask = "choice";
                             $mask .= (string)$z;
+                            if($result1[$mask] == NULL)
+                            {
+                            }
+                            else
+                            {
                         ?>
-                            <div class="card-block">
-                                <input type="radio" name="quizcheck[<?php echo $ansid; ?>]" id="<?php echo (string)($z); ?>" value="<?php echo (string)($z); ?>"> <?php echo $result1[$mask]; ?>
-                                <br>
-                            </div>
+                                <div class="card-block">
+                                    <input type="radio" name="quizcheck[<?php echo $ansid; ?>]" id="<?php echo (string)($z); ?>" value="<?php echo (string)($z); ?>"> <?php echo $result1[$mask]; ?>
+                                    <br>
+                                </div>
                     <?php
+                            }
                         }
                         $ansid = $ansid + $l;
                     }
