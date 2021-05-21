@@ -7,6 +7,12 @@ if (!isset($_SESSION['username'])) {
 
 //connect the server to the database
 include("db/dbConnection.php");
+include("db/dbFunctions.inc.php");
+createQus($conn, 'What does HTML stand for','Home tool Markup language','Hyperlinks and Text Markup language','Hyper Text Markup language','none of the above','Home tool Markup language');
+createQus($conn, 'look at the following selector: $("div"). What does it select?','The first divs element','All div elements','The last div element','none of the above','The first divs element');
+createQus($conn, 'Where is the correct place to insert a javascript?','the head section','The body section','Both the head and body','none of the above','the head section');
+createQus($conn, 'How do you create a function in javascript?','function myFunction()','function:myFunction()','function=myFunction()','none of the above','function myFunction()');
+createQus($conn, 'Which class provides a responsive fixed width container?','container','container-fixed','container-fluid','none of these','container');
 
 ?>
 <!DOCTYPE html>
@@ -47,36 +53,26 @@ include("db/dbConnection.php");
 
                     $ansid = $i;
 
-                    $sql1 = "SELECT * FROM `questions` WHERE `qid` = $i ";
-                    $result1 = mysqli_query($conn, $sql1);
-                    if (mysqli_num_rows($result1) > 0) {
-                        while ($row1 = mysqli_fetch_assoc($result1)) {
+                    $result1= getQuestion($conn, $i);
                 ?>
+                        <br>
+                        <div class="card">
                             <br>
-                            <div class="card">
-                                <br>
-                                <p class="card-header"> <?php echo $i . " : " . $row1['question']."<hr>"; ?> </p>
-
-                                <?php
-                                $sql = "SELECT * FROM answers WHERE ans_id = $i ";
-                                $result = mysqli_query($conn, $sql);
-                                if (mysqli_num_rows($result) > 0) {
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                ?>
-
-                                        <div class="card-block">
-                                            <input type="radio" name="quizcheck[<?php echo $ansid; ?>]" id="<?php echo $row['ans_id']; ?>" value="<?php echo $row['aid']; ?>"> <?php echo $row['answer']; ?>
-                                            <br>
-                                        </div>
+                            <p class="card-header"> <?php echo $i . " : " . $result1['question']."<hr>"; ?> </p>
+                            <?php
+                            $z = 1;
+                            for ($z = 1; $z < 5; $z++) {
+                                $mask = "choice";
+                                $mask .=(string)$z;
+                            ?>
+                                <div class="card-block">
+                                    <input type="radio" name="quizcheck[<?php echo $ansid; ?>]" id="<?php echo (String)($z); ?>" value="<?php echo (String)($i+$z); ?>"> <?php echo $result1[$mask]; ?>
+                                    <br>
+                                </div>
                     <?php
-
-                                    }
                                 }
-                                $ansid = $ansid + $l;
-                            }
+                            $ansid = $ansid + $l;
                         }
-                    }
-
                     ?>
                             </div>
 
