@@ -47,31 +47,34 @@ include("db/dbFunctions.inc.php");
 
                     $ansid = $i;
 
-                    $result1= getQuestion($conn, $i);
+                    $result1 = getQuestion($conn, $i);
                 ?>
+                    <br>
+                    <div class="card">
                         <br>
-                        <div class="card">
-                            <br>
-                            <p class="card-header"> <?php echo $i . " : " . $result1['question']."<hr>"; ?> </p>
-                            <?php
-                            $z = 1;
-                            for ($z = 1; $z < 5; $z++) {
-                                $mask = "choice";
-                                $mask .=(string)$z;
-                            ?>
-                                <div class="card-block">
-                                    <input type="radio" name="quizcheck[<?php echo $ansid; ?>]" id="<?php echo (String)($z); ?>" value="<?php echo (String)($z); ?>"> <?php echo $result1[$mask]; ?>
-                                    <br>
-                                </div>
-                    <?php
-                                }
-                            $ansid = $ansid + $l;
-                        }
-                    ?>
+                        <p class="card-header"> <?php echo $i . " : " . $result1['question'] . "<hr>"; ?> </p>
+                        <?php
+                        $z = 1;
+                        for ($z = 1; $z < 5; $z++) {
+                            $mask = "choice";
+                            $mask .= (string)$z;
+                        ?>
+                            <div class="card-block">
+                                <input type="radio" name="quizcheck[<?php echo $ansid; ?>]" id="<?php echo (string)($z); ?>" value="<?php echo (string)($z); ?>"> <?php echo $result1[$mask]; ?>
+                                <br>
                             </div>
+                    <?php
+                        }
+                        $ansid = $ansid + $l;
+                    }
+                    ?>
+                    </div>
 
-                            <br>
-                            <input type="submit" name="submit" Value="Submit" id="btn" class="btn-success m-auto d-block" /> <br>
+                    <br>
+                    <div class="center">
+                        <input type="submit" name="submit" Value="Submit" id="btn" class="btn-success m-auto d-block" />
+                    </div>
+                    <br>
             </form>
         </div>
     </div>
