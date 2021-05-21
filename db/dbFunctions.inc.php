@@ -1,5 +1,5 @@
 <?php
-function checkAns($conn, $questionID, $ans)
+function checkAns($conn, $questionID, $ansId)
 {
     $sql = "SELECT * FROM questions WHERE qid = ? AND answer = ?;";
     $stmt = mysqli_stmt_init($conn);
@@ -8,7 +8,7 @@ function checkAns($conn, $questionID, $ans)
         header("location: ../index.php?errpr=stmtfailed");
         exit();
     }
-    mysqli_stmt_bind_param($stmt, "ss", $questionID, $ans);
+    mysqli_stmt_bind_param($stmt, "ss", $questionID, $ansId);
     mysqli_stmt_execute($stmt);
     if (mysqli_stmt_get_result($stmt))
     {
