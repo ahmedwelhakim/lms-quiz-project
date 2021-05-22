@@ -48,25 +48,41 @@ function getQuestion($conn, $questionID)
 }
 
 function deleteQuestions($conn)
-{   
-    for ($i=0; $i < 400; $i++) 
-    { 
-        $sql = "DELETE FROM questions WHERE qid = ?;";
-        $stmt = mysqli_stmt_init($conn);
-        if (!mysqli_stmt_prepare($stmt,$sql))
-        {
-            exit();
-        }
-        mysqli_stmt_bind_param($stmt, "s", $i);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
+{ 
+    $sql = "DELETE FROM questions WHERE qid > 0;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt,$sql))
+    {
+        exit();
     }
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
     $sql = "ALTER TABLE questions AUTO_INCREMENT = 1;";
     $stmt = mysqli_stmt_init($conn);
     mysqli_stmt_prepare($stmt,$sql);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 }
+
+function sortQuestions($conn)
+{
+    $sql = "SELECT * FROM questions ORDER BY qid;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt,$sql))
+    {
+        header("location: ../index.php?errpr=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_execute($stmt);
+    $result =mysqli_stmt_get_result($stmt);
+    deleteQuestions($conn);
+    while ($row = mysqli_fetch_array($result))
+    {
+        createQus($conn,$row["question"], $row["choice1"], $row["choice2"], $row["choice3"], $row["choice4"], $row["answer"]);
+    }
+    mysqli_stmt_close($stmt);
+}
+
 
 function getAns($conn, $questionID)
 {
@@ -157,7 +173,7 @@ function getRandQuestion($conn, $numberOfQus, $maxID)
 {
     for ($i=0; $i < $numberOfQus; $i++) 
     {
-        for ($j=1; $j < 400; $j++) 
+        for ($j=1; $j < $maxID*5; $j++) 
         {
             $random = rand(1+(($maxID/$numberOfQus)*$i),(($maxID/$numberOfQus)*($i+1)));
             if(checkQus($conn, $random))
