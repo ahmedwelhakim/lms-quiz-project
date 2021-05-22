@@ -152,7 +152,46 @@ function checkDub($conn, $userName)
     }
     mysqli_stmt_close($stmt);
 }
-    
+
+function getRandQuestion($conn, $numberOfQus, $maxID)
+{
+    for ($i=0; $i < $numberOfQus; $i++) 
+    {
+        for ($j=1; $j < 400; $j++) 
+        {
+            $random = rand(1+(($maxID/$numberOfQus)*$i),(($maxID/$numberOfQus)*($i+1)));
+            if(checkQus($conn, $random))
+            {
+                $questions[0+$i] = getQuestion($conn, $random);
+            }
+        }
+    }
+    return $questions;
+}
+
+function checkQus($conn, $questionID)
+{
+    $sql = "SELECT * FROM questions WHERE qid = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt,$sql))
+    {
+        header("location: ../index.php?errpr=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "s", $questionID);
+    mysqli_stmt_execute($stmt);
+    $data = mysqli_stmt_get_result($stmt);
+    if (mysqli_fetch_assoc($data))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    mysqli_stmt_close($stmt);
+}
+
 function loginUser($conn, $name, $pwd)
 {
     $sql = "SELECT * FROM users WHERE userName = ?;";
