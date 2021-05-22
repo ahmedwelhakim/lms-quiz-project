@@ -65,12 +65,19 @@ include("db/dbFunctions.inc.php");
                             {
                         ?>
                                 <div class="card-block">
-                                    <input type="radio" name="quizcheck[<?php echo $ansid; ?>]" id="<?php echo (string)($z); ?>" value="<?php echo (string)($z); ?>"> <?php echo $result1[$mask]; ?>
+                                    <input type="radio" name="question<?php echo $i; ?>" id="<?php echo (string)($z); ?>" value="<?php echo $z; ?>"> <?php echo $result1[$mask]; ?>
                                     <br>
                                 </div>
+
+                                
                     <?php
                             }
                         }
+                        ?>
+                        <div class="correct-answer">
+                                    correct answer: <?php echo($result1['choice'.$result1['answer']]);?>
+                                </div>
+                        <?php
                         $ansid = $ansid + $l;
                     }
                     ?>
@@ -78,7 +85,7 @@ include("db/dbFunctions.inc.php");
 
                     <br>
                     <div class="center">
-                        <input type="submit" name="submit" Value="Submit" id="btn" class="btn-success m-auto d-block" />
+                        <input type="submit" name="submit" Value="Submit" id="btn" class="btn-success" />
                     </div>
                     <br>
             </form>
