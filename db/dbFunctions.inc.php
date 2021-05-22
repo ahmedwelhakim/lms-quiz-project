@@ -179,6 +179,7 @@ function getRandQuestion($conn, $numberOfQus, $maxID)
             if(checkQus($conn, $random))
             {
                 $questions[0+$i] = getQuestion($conn, $random);
+                break;
             }
         }
     }
