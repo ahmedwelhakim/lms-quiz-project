@@ -1,6 +1,6 @@
-CREATE DATABASE lmsbase;
+CREATE DATABASE lmsdb;
 
-USE  lmsbase;
+USE  lmsdb;
 
 CREATE TABLE questions(
     qid INT(250) AUTO_INCREMENT NOT NULL PRIMARY KEY,
