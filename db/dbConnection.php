@@ -3,7 +3,7 @@
     $ServerName="localhost";
     $dBusername="root";
     $dBpwd="";
-    $dBName="lmsbase";
+    $dBName="lmsdb";
 
     $conn=mysqli_connect($ServerName,$dBusername,$dBpwd, $dBName);
 
