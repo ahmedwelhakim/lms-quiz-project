@@ -8,11 +8,11 @@ if (!isset($_SESSION['username'])) {
 //connect the server to the database
 include("db/dbConnection.php");
 include("db/dbFunctions.inc.php");
-createQus($conn, 'What does HTML stand for','Home tool Markup language','Hyperlinks and Text Markup language','Hyper Text Markup language','none of the above',1);
-createQus($conn, 'look at the following selector: $("div"). What does it select?','The first divs element','All div elements','The last div element','none of the above',1);
-createQus($conn, 'Where is the correct place to insert a javascript?','the head section','The body section','Both the head and body','none of the above',1);
-createQus($conn, 'How do you create a function in javascript?','function myFunction()','function:myFunction()','function=myFunction()','none of the above',1);
-createQus($conn, 'Which class provides a responsive fixed width container?','container','container-fixed','container-fluid','none of these',1);
+//createQus($conn, 'What does HTML stand for','Home tool Markup language','Hyperlinks and Text Markup language','Hyper Text Markup language','none of the above',1);
+//createQus($conn, 'look at the following selector: $("div"). What does it select?','The first divs element','All div elements','The last div element','none of the above',1);
+//createQus($conn, 'Where is the correct place to insert a javascript?','the head section','The body section','Both the head and body','none of the above',1);
+//createQus($conn, 'How do you create a function in javascript?','function myFunction()','function:myFunction()','function=myFunction()','none of the above',1);
+//createQus($conn, 'Which class provides a responsive fixed width container?','container','container-fixed','container-fluid','none of these',1);
 
 ?>
 <!DOCTYPE html>
@@ -48,17 +48,19 @@ createQus($conn, 'Which class provides a responsive fixed width container?','con
         <div class="quiz">
             <form action="checked.php" method="post">
                 <?php
-                for ($i = 1; $i < 6; $i++) {
+                /** @var mysqli $conn */
+                $questions = getQuestions($conn);
+                $ansid = 1;
+
+
+                foreach ($questions as $q) {
                     $l = 1;
 
-                    $ansid = $i;
-
-                    $result1= getQuestion($conn, $i);
                 ?>
                         <br>
                         <div class="card">
                             <br>
-                            <p class="card-header"> <?php echo $i . " : " . $result1['question']."<hr>"; ?> </p>
+                            <p class="card-header"> <?php echo $q['qid'] . " : " . $q['question']."<hr>"; ?> </p>
                             <?php
                             $z = 1;
                             for ($z = 1; $z < 5; $z++) {
@@ -66,7 +68,7 @@ createQus($conn, 'Which class provides a responsive fixed width container?','con
                                 $mask .=(string)$z;
                             ?>
                                 <div class="card-block">
-                                    <input type="radio" name="quizcheck[<?php echo $ansid; ?>]" id="<?php echo (String)($z); ?>" value="<?php echo (String)($z); ?>"> <?php echo $result1[$mask]; ?>
+                                    <input type="radio" name="quizcheck[<?php echo $ansid; ?>]" id="<?php echo (String)($z); ?>" value="<?php echo (String)($z); ?>"> <?php echo $q[$mask]; ?>
                                     <br>
                                 </div>
                     <?php
