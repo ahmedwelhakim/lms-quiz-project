@@ -36,7 +36,7 @@
                                 <label>User name</label>
                             </td>
                             <td>
-                                <input type="text" id="user" name="user" class="text-box" required />
+                                <input type="text" id="user" name="user" class="text-box" placeholder="Username" required />
                             </td>
 
                         </tr>
@@ -45,7 +45,7 @@
                                 <label>Password</label>
                             </td>
                             <td>
-                                <input type="password" id="pass" name="password" class="text-box" required />
+                                <input type="password" id="pass" name="password" class="text-box" placeholder="Password" required />
 
 
                             </td>
