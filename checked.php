@@ -1,12 +1,46 @@
 <?php
+
+include("db/dbConnection.php");
+include("db/dbFunctions.inc.php");
+if (isset($_POST['question1'])) {
+
+
+
+    $score = 0;
+    $total_questions=0;
+    for ($i = 1; $i < sizeof($_POST); $i++) {
+        $total_questions++;
+        if (checkAns($conn, $i, $_POST["question" . $i])) {
+            $score++;
+        }
+    }
+}
+
+function Checked($question_no,$qid){
+    if($_POST['question'.$question_no]==$qid){
+        echo 'checked';
+    }
+}
+function isWrongCorrect($conn,$question_no,$ansid){
+    if(checkAns($conn,$question_no,$ansid)){
+        echo 'class="correct"';
+    }else if($_POST['question'.$question_no]==$ansid){
+        echo 'class="wrong"';
+    }
+}
+
+
+?>
+
+
+<?php
 session_start();
 
 if (!isset($_SESSION['username'])) {
     header('location:index.php');
 }
 
-include("db/dbConnection.php");
-include("db/dbFunctions.inc.php");
+
 
 ?>
 <!DOCTYPE html>
@@ -39,8 +73,11 @@ include("db/dbFunctions.inc.php");
         </nav>
     </div>
     <div class="main-body">
+        <div class="Score">
+        <h3> Score : <?php echo $score; ?> out of <?php echo $total_questions; ?></h3>
+        </div>
         <div class="quiz">
-            <form action="checked.php" method="post">
+            <form >
                 <?php
                 for ($i = 1; $i < 6; $i++) {
                     $l = 1;
@@ -54,39 +91,38 @@ include("db/dbFunctions.inc.php");
                         <br>
                         <p class="card-header"> <?php echo $i . " : " . $result1['question'] . "<hr>"; ?> </p>
                         <?php
-                        for ($z = 1; $z < 5; $z++)
-                        {
+                        for ($z = 1; $z < 5; $z++) {
                             $mask = "choice";
                             $mask .= (string)$z;
-                            if($result1[$mask] == NULL)
-                            {
-                            }
-                            else
-                            {
+                            if ($result1[$mask] == NULL) {
+                            } else {
                         ?>
                                 <div class="card-block">
-                                    <input type="radio" name="question<?php echo $i; ?>" id="<?php echo (string)($z); ?>" value="<?php echo $z; ?>"> <?php echo $result1[$mask]; ?>
+                                    <input disabled <?php Checked($i,$z);?> 
+                                    
+                                    type="radio" name="question<?php echo $i; ?>" id="<?php echo (string)($z); ?>" 
+                                    value="<?php echo $z; ?>"> 
+                                    <span <?php isWrongCorrect($conn,$i,$z)?>>
+                                        <?php echo $result1[$mask]; ?>
+                                    </span>
+                                    
                                     <br>
                                 </div>
 
-                                
-                    <?php
+
+                        <?php
                             }
                         }
                         ?>
-                        <div class="correct-answer">
-                                    correct answer: <?php echo($result1['choice'.$result1['answer']]);?>
-                                </div>
-                        <?php
-                        $ansid = $ansid + $l;
-                    }
+                       
+                    <?php
+                    $ansid = $ansid + $l;
+                }
                     ?>
                     </div>
 
                     <br>
-                    <div class="center">
-                        <input type="submit" name="submit" Value="Submit" id="btn" class="btn-success" />
-                    </div>
+                    
                     <br>
             </form>
         </div>

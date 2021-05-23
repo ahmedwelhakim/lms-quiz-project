@@ -12,7 +12,7 @@ function checkAns($conn, $questionID, $ansId)
     mysqli_stmt_execute($stmt);
     $result =mysqli_stmt_get_result($stmt);
 
-    if ($row = mysqli_fetch_assoc($result))
+    if (mysqli_fetch_assoc($result))
     {
         return true;
     }
@@ -23,28 +23,16 @@ function checkAns($conn, $questionID, $ansId)
     mysqli_stmt_close($stmt);
 }
 
-function getQuestion($conn, $questionID)
+function getQuestions($conn)
 {
-    $sql = "SELECT * FROM questions WHERE qid = ?;";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt,$sql))
-    {
-        header("location: ../index.php?errpr=stmtfailed");
-        exit();
-    }
-    mysqli_stmt_bind_param($stmt, "s", $questionID);
-    mysqli_stmt_execute($stmt);
-    $result =mysqli_stmt_get_result($stmt);
+    $sql = "SELECT * FROM questions";
+    $result = mysqli_query($conn, $sql);
 
-    if ($row = mysqli_fetch_assoc($result))
-    {
-        return $row;
-    }
-    else
-    {
-        return false;
-    }
-    mysqli_stmt_close($stmt);
+// Fetch all
+    $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    mysqli_close($conn);
+    return $result;
 }
 
 function deleteQuestions($conn)
@@ -168,7 +156,29 @@ function checkDub($conn, $userName)
     }
     mysqli_stmt_close($stmt);
 }
+function getQuestion($conn, $questionID)
+{
+    $sql = "SELECT * FROM questions WHERE qid = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt,$sql))
+    {
+        header("location: ../index.php?errpr=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "s", $questionID);
+    mysqli_stmt_execute($stmt);
+    $result =mysqli_stmt_get_result($stmt);
 
+    if ($row = mysqli_fetch_assoc($result))
+    {
+        return $row;
+    }
+    else
+    {
+        return false;
+    }
+    mysqli_stmt_close($stmt);
+}
 function getRandQuestion($conn, $numberOfQus, $maxID)
 {
     for ($i=0; $i < $numberOfQus; $i++) 
@@ -229,7 +239,12 @@ function loginUser($conn, $name, $pwd)
         if(password_verify($pwd, $row["userPwd"]))
         {
             $_SESSION['username'] = $row["userName"];
-            echo ($row['userJob']);        }
+
+            echo ($row['userJob']);
+        }
+
+           
+
         else
         {
             echo("<b>Login Failed!</b> <br>please enter correct username and password");
