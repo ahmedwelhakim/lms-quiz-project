@@ -34,7 +34,7 @@ include("db/dbFunctions.inc.php");
     <div class="nav-container">
         <nav id="nav">
             <div class="logo">
-                My LMS
+                <a href="student_home.php"> My LMS</a>
             </div>
             <div class="nav-list"></div>
             <div class="nav-login">
