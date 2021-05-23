@@ -7,7 +7,7 @@ if (isset($_POST['question1'])) {
 
 
     $score = 0;
-    $total_questions=0;
+    $total_questions = 0;
     for ($i = 1; $i < sizeof($_POST); $i++) {
         $total_questions++;
         if (checkAns($conn, $i, $_POST["question" . $i])) {
@@ -16,15 +16,17 @@ if (isset($_POST['question1'])) {
     }
 }
 
-function Checked($question_no,$qid){
-    if($_POST['question'.$question_no]==$qid){
+function Checked($question_no, $qid)
+{
+    if ($_POST['question' . $question_no] == $qid) {
         echo 'checked';
     }
 }
-function isWrongCorrect($conn,$question_no,$ansid){
-    if(checkAns($conn,$question_no,$ansid)){
+function isWrongCorrect($conn, $question_no, $ansid)
+{
+    if (checkAns($conn, $question_no, $ansid)) {
         echo 'class="correct"';
-    }else if($_POST['question'.$question_no]==$ansid){
+    } else if ($_POST['question' . $question_no] == $ansid) {
         echo 'class="wrong"';
     }
 }
@@ -60,7 +62,7 @@ if (!isset($_SESSION['username'])) {
     <div class="nav-container">
         <nav id="nav">
             <div class="logo">
-                My LMS
+                <a href="student_home.php"> My LMS</a>
             </div>
             <div class="nav-list"></div>
             <div class="nav-login">
@@ -74,10 +76,10 @@ if (!isset($_SESSION['username'])) {
     </div>
     <div class="main-body">
         <div class="Score">
-        <h3> Score : <?php echo $score; ?> out of <?php echo $total_questions; ?></h3>
+            <h3> Score : <?php echo $score; ?> out of <?php echo $total_questions; ?></h3>
         </div>
         <div class="quiz">
-            <form >
+            <form>
                 <?php
                 for ($i = 1; $i < 6; $i++) {
                     $l = 1;
@@ -98,14 +100,11 @@ if (!isset($_SESSION['username'])) {
                             } else {
                         ?>
                                 <div class="card-block">
-                                    <input disabled <?php Checked($i,$z);?> 
-                                    
-                                    type="radio" name="question<?php echo $i; ?>" id="<?php echo (string)($z); ?>" 
-                                    value="<?php echo $z; ?>"> 
-                                    <span <?php isWrongCorrect($conn,$i,$z)?>>
+                                    <input disabled <?php Checked($i, $z); ?> type="radio" name="question<?php echo $i; ?>" id="<?php echo (string)($z); ?>" value="<?php echo $z; ?>">
+                                    <span <?php isWrongCorrect($conn, $i, $z) ?>>
                                         <?php echo $result1[$mask]; ?>
                                     </span>
-                                    
+
                                     <br>
                                 </div>
 
@@ -114,7 +113,7 @@ if (!isset($_SESSION['username'])) {
                             }
                         }
                         ?>
-                       
+
                     <?php
                     $ansid = $ansid + $l;
                 }
@@ -122,7 +121,7 @@ if (!isset($_SESSION['username'])) {
                     </div>
 
                     <br>
-                    
+
                     <br>
             </form>
         </div>

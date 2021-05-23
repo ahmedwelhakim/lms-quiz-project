@@ -14,7 +14,7 @@
     <div class="nav-container">
         <nav id="nav">
             <div class="logo">
-                My LMS
+                <a href="index.php"> My LMS</a>
             </div>
             <div class="nav-list"></div>
             <div class="nav-login">

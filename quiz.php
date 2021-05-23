@@ -26,7 +26,7 @@ include("db/dbFunctions.inc.php");
     <div class="nav-container">
         <nav id="nav">
             <div class="logo">
-                My LMS
+                <a href="#"> My LMS</a>
             </div>
             <div class="nav-list"></div>
             <div class="nav-login">
@@ -54,32 +54,28 @@ include("db/dbFunctions.inc.php");
                         <br>
                         <p class="card-header"> <?php echo $i . " : " . $result1['question'] . "<hr>"; ?> </p>
                         <?php
-                        for ($z = 1; $z < 5; $z++)
-                        {
+                        for ($z = 1; $z < 5; $z++) {
                             $mask = "choice";
                             $mask .= (string)$z;
-                            if($result1[$mask] == NULL)
-                            {
-                            }
-                            else
-                            {
+                            if ($result1[$mask] == NULL) {
+                            } else {
                         ?>
                                 <div class="card-block">
-                                    <input type="radio" name="question<?php echo $i; ?>" id="<?php echo (string)($z); ?>" value="<?php echo $z; ?>"> <?php echo $result1[$mask]; ?>
+                                    <input required type="radio" name="question<?php echo $i; ?>" id="<?php echo (string)($z); ?>" value="<?php echo $z; ?>"> <?php echo $result1[$mask]; ?>
                                     <br>
                                 </div>
 
-                                
-                    <?php
+
+                        <?php
                             }
                         }
                         ?>
                         <div class="correct-answer">
-                                    correct answer: <?php echo($result1['choice'.$result1['answer']]);?>
-                                </div>
-                        <?php
-                        $ansid = $ansid + $l;
-                    }
+                            correct answer: <?php echo ($result1['choice' . $result1['answer']]); ?>
+                        </div>
+                    <?php
+                    $ansid = $ansid + $l;
+                }
                     ?>
                     </div>
 
