@@ -1,9 +1,9 @@
 <?php
 
+include("db/dbConnection.php");
+include("db/dbFunctions.inc.php");
 if (isset($_POST['question1'])) {
 
-    include("../db/dbConnection.php");
-    include("../db/dbFunctions.inc.php");
 
 
     $score = 0;
@@ -15,6 +15,21 @@ if (isset($_POST['question1'])) {
         }
     }
 }
+
+function Checked($question_no,$qid){
+    if($_POST['question'.$question_no]==$qid){
+        echo 'checked';
+    }
+}
+function isWrongCorrect($conn,$question_no,$ansid){
+    if(checkAns($conn,$question_no,$ansid)){
+        echo 'class="correct"';
+    }else if($_POST['question'.$question_no]==$ansid){
+        echo 'class="wrong"';
+    }
+}
+
+
 ?>
 
 
@@ -35,7 +50,7 @@ if (!isset($_SESSION['username'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>homepage</title>
 
 </head>
@@ -62,7 +77,7 @@ if (!isset($_SESSION['username'])) {
         <h3> Score : <?php echo $score; ?> out of <?php echo $total_questions; ?></h3>
         </div>
         <div class="quiz">
-            <form action="process/checked.php" method="post">
+            <form >
                 <?php
                 for ($i = 1; $i < 6; $i++) {
                     $l = 1;
@@ -83,7 +98,14 @@ if (!isset($_SESSION['username'])) {
                             } else {
                         ?>
                                 <div class="card-block">
-                                    <input disabled checked type="radio" name="question<?php echo $i; ?>" id="<?php echo (string)($z); ?>" value="<?php echo $z; ?>"> <?php echo $result1[$mask]; ?>
+                                    <input disabled <?php Checked($i,$z);?> 
+                                    
+                                    type="radio" name="question<?php echo $i; ?>" id="<?php echo (string)($z); ?>" 
+                                    value="<?php echo $z; ?>"> 
+                                    <span <?php isWrongCorrect($conn,$i,$z)?>>
+                                        <?php echo $result1[$mask]; ?>
+                                    </span>
+                                    
                                     <br>
                                 </div>
 
@@ -92,9 +114,7 @@ if (!isset($_SESSION['username'])) {
                             }
                         }
                         ?>
-                        <div class="correct-answer">
-                            correct answer: <?php echo ($result1['choice' . $result1['answer']]); ?>
-                        </div>
+                       
                     <?php
                     $ansid = $ansid + $l;
                 }

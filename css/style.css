@@ -134,3 +134,15 @@ td {
     width: fit-content;
     padding-left: 0%;
 }
+
+.correct {
+    border-radius: 0.2em;
+    background-color: rgb(8, 185, 8);
+    width: fit-content;
+}
+
+.wrong {
+    border-radius: 0.2em;
+    background-color: rgb(250, 0, 0);
+    width: fit-content;
+}

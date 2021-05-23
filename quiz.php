@@ -40,7 +40,7 @@ include("db/dbFunctions.inc.php");
     </div>
     <div class="main-body">
         <div class="quiz">
-            <form action="process/checked.php" method="post">
+            <form action="checked.php" method="post">
                 <?php
                 for ($i = 1; $i < 6; $i++) {
                     $l = 1;
