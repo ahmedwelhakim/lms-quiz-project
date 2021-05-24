@@ -43,6 +43,11 @@ body {
     font-size: 1.7em;
 }
 
+.logo a {
+    color: var(--textColorLight);
+    text-decoration: none;
+}
+
 .nav-login {
     margin: auto;
     margin-right: 13%;

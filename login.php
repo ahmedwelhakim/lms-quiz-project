@@ -14,7 +14,7 @@
     <div class="nav-container">
         <nav id="nav">
             <div class="logo">
-                My LMS
+                <a href="index.php"> My LMS</a>
             </div>
             <div class="nav-list"></div>
             <div class="nav-login">
@@ -35,14 +35,14 @@
                         <tr>
                             <td><label>User name</label></td>
 
-                            <td><input type="text" id="user" name="user" class="text-box" required /></td>
+                            <td><input type="text" id="user" name="user" class="text-box" placeholder="Username" required /></td>
                         </tr>
                         <tr>
                             <td><label>Password</label></td>
 
 
                             <td>
-                                <input type="password" id="pass" name="password" class="text-box" required />
+                                <input type="password" id="pass" name="password" class="text-box" placeholder="Password" required />
                             </td>
                         </tr>
                         <tr>

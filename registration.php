@@ -14,7 +14,7 @@
 
         <nav id="nav">
             <div class="logo">
-                My LMS
+                <a href="index.php"> My LMS</a>
             </div>
             <div class="nav-list"></div>
             <div class="nav-login">
@@ -27,7 +27,7 @@
     <div class="body-container">
         <div class="main-body">
             <div id="frm">
-            <h3>Registration Form</h3>
+                <h3>Registration Form</h3>
                 <form method="post" action="javascript:void(0)">
 
                     <table class="frm-table">
@@ -36,7 +36,7 @@
                                 <label>User name</label>
                             </td>
                             <td>
-                                <input type="text" id="user" name="user" class="text-box" required />
+                                <input type="text" id="user" name="user" class="text-box" placeholder="Username" required />
                             </td>
 
                         </tr>
@@ -45,7 +45,7 @@
                                 <label>Password</label>
                             </td>
                             <td>
-                                <input type="password" id="pass" name="password" class="text-box" required />
+                                <input type="password" id="pass" name="password" class="text-box" placeholder="Password" required />
 
 
                             </td>
