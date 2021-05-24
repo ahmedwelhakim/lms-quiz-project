@@ -39,7 +39,13 @@ include("db/dbFunctions.inc.php");
             <div class="nav-list"></div>
             <div class="nav-login">
                 <ul class="nav-list">
-                    <li>Welcome <?php echo ($_SESSION['username']); ?></li>
+                    <li>Welcome <?php
+
+                        echo ($_SESSION['username']);
+                        if ($_SESSION['userJob'] != "student"){
+                            header('location:index.php');
+                        }
+                        ?></li>
                 </ul>
             </div>
         </nav>

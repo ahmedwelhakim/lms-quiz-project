@@ -18,3 +18,9 @@ CREATE TABLE users(
     userJob VARCHAR(128) NOT NULL);
 
 ALTER TABLE `users` ADD UNIQUE(`userName`);
+
+
+CREATE TABLE settings (
+    quizDate DATE NOT NULL,
+    quizDuration TIME DEFAULT '00:10:00' NOT NULL
+)
