@@ -1,9 +1,11 @@
 <?php
-//connect the server to the database
+//connect the server to the databasege
 include("db/dbConnection.php");
 include("db/dbFunctions.inc.php");
 
-for ($qi = 0; $qi <= $_POST['counter']; $qi++) {
+if ($_POST['counter'] > 200) $_POST['counter'] = 200;
+
+for ($qi = 1; $qi <= $_POST['counter']; $qi++) {
     if (isset($_POST['mc-q-' . $qi])) {
         $question = $_POST['mc-q-' . $qi];
         $choice1 = $_POST['mc-ch-1-' . $qi];
@@ -18,4 +20,5 @@ for ($qi = 0; $qi <= $_POST['counter']; $qi++) {
         createQus($conn, $question, $answer);
     }
 }
-exit();
+
+setSettings($conn, $_POST['quizDate'], $_POST['quizDuration']);

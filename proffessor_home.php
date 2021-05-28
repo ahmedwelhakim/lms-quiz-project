@@ -44,15 +44,14 @@ if ($_SESSION['userJob'] == "student") {
                     Quiz Settings
                 </p>
                 <label for="quizDate">Date</label>
-                <input id="quizDate" type="date" required>
+                <input id="quizDate" name="quizDate" type="date" required>
                 <br>
                 <label for="quizDuration">Quiz Duration (in minutes)</label>
-                <input id="quizDuration" type="number" value="10" required>
+                <input id="quizDuration" name="quizDuration" type="number" value="10" min="1" max="1439" required>
             </div>
             <br>
-
             <!-- prefix mc: mc-   mc-q-    mc-ch-    mc-cor- -->
-            <!-- prefix tf: tf-   tf-q-    tf-ch-    tf-cor- -->
+            <!-- prefix tf: tf-   tf-q-    tf-cor- -->
 
             <div style="display: none" id="mc-" class="card">
                 <input type="button" value="Remove question"
@@ -96,26 +95,20 @@ if ($_SESSION['userJob'] == "student") {
                 <br>
             </div>
 
-            <input type="text" style="display: none" name="counter" value="0" id="counter">
-
+            <input type="number" style="display: none" name="counter" id="counter">
             <input type="button" value="Add MC question" onclick="moreFields('mc-');"/>
             <input type="button" value="Add TF question" onclick="moreFields('tf-');"/>
+            <br>
+            <div class="center">
+                <input type="submit" name="submit" Value="Submit" id="btn" class="btn-success"/>
+            </div>
+            <br>
+        </form>
+
+        <script src="js/addingformfields.js"></script>
 
     </div>
-
-    <script src="js/addingformfields.js"></script>
-
-
-    <br>
-    <div class="center">
-        <input type="submit" name="submit" Value="Submit" id="btn" class="btn-success"/>
-    </div>
-    <br>
-    </form>
 </div>
-</div>
-
-
 </body>
 
 </html>

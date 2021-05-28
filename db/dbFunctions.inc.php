@@ -106,6 +106,26 @@ function createQus($conn, $question, $ans, $choice1 = null, $choice2 = null, $ch
 }
 
 
+function setSettings($conn, $quizDate, $quizDuration)
+{
+
+    if ($quizDuration > 1439) $quizDuration = 1439;
+    if ($quizDuration < 1) $quizDuration = 1;
+    $quizDuration = sprintf('%02d:%02d:%02d', ($quizDuration / 60), ($quizDuration % 60), 0);
+
+    $stmt = $conn->query("TRUNCATE settings");
+
+    $sql = "INSERT INTO settings (quizDate, quizDuration) VALUES (?, ?)";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../index.php?errpr=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "ss", $quizDate, $quizDuration);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+}
+
 function createUser($conn, $name, $pwd, $job)
 {
     if (checkDub($conn, $name) != false) {
