@@ -2,9 +2,20 @@
 //connect the server to the database
 include("db/dbConnection.php");
 include("db/dbFunctions.inc.php");
-createQus($conn, 'What does HTML stand for','Home tool Markup language','Hyperlinks and Text Markup language','Hyper Text Markup language','none of the above',1);
-createQus($conn, 'look at the following selector: $("div"). What does it select?','The first divs element','All div elements','The last div element','none of the above',1);
-createQus($conn, 'Where is the correct place to insert a javascript?','the head section','The body section','Both the head and body','none of the above',1);
-createQus($conn, 'How do you create a function in javascript?','function myFunction()','function:myFunction()','function=myFunction()','none of the above',1);
-createQus($conn, 'Which class provides a responsive fixed width container?','container','container-fixed','container-fluid','none of these',1);
-?>
+
+for ($qi = 0; $qi <= $_POST['counter']; $qi++) {
+    if (isset($_POST['mc-q-' . $qi])) {
+        $question = $_POST['mc-q-' . $qi];
+        $choice1 = $_POST['mc-ch-1-' . $qi];
+        $choice2 = $_POST['mc-ch-2-' . $qi];
+        $choice3 = $_POST['mc-ch-3-' . $qi];
+        $choice4 = $_POST['mc-ch-4-' . $qi];
+        $answer = $_POST['mc-cor-' . $qi];
+        createQus($conn, $question, $answer, $choice1, $choice2, $choice3, $choice4);
+    } else if (isset($_POST['tf-q-' . $qi])) {
+        $question = $_POST['tf-q-' . $qi];
+        $answer = $_POST['tf-cor-' . $qi];
+        createQus($conn, $question, $answer);
+    }
+}
+exit();

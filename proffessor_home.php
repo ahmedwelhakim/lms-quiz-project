@@ -60,13 +60,13 @@ if ($_SESSION['userJob'] == "student") {
                 <p class="card-header">CM</p>
                 <div class="card-block">
                     Question <input type="text" name="mc-q-"><br>
-                    Choice 1 <input type="text" name="mc-ch-" value="">
+                    Choice 1 <input type="text" name="mc-ch-1-" value="">
                     <br>Choice 2
-                    <input type="text" name="mc-ch-" value="">
+                    <input type="text" name="mc-ch-2-" value="">
                     <br>Choice 3
-                    <input type="text" name="mc-ch-" value="">
+                    <input type="text" name="mc-ch-3-" value="">
                     <br>Choice 4
-                    <input type="text" name="mc-ch-" value="">
+                    <input type="text" name="mc-ch-4-" value="">
                     <br>
                 </div>
                 <br>
@@ -85,7 +85,7 @@ if ($_SESSION['userJob'] == "student") {
                        onclick="this.parentNode.parentNode.removeChild(this.parentNode);"/>
                 <p class="card-header">TF</p>
                 <div class="card-block">
-                    Question <input type="text" name="mc-q-">
+                    Question <input type="text" name="tf-q-">
                 </div>
                 <br>
                 Correct Answer:
@@ -95,6 +95,8 @@ if ($_SESSION['userJob'] == "student") {
                 </div>
                 <br>
             </div>
+
+            <input type="text" style="display: none" name="counter" value="0" id="counter">
 
             <input type="button" value="Add MC question" onclick="moreFields('mc-');"/>
             <input type="button" value="Add TF question" onclick="moreFields('tf-');"/>
