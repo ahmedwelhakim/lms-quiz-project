@@ -105,6 +105,38 @@ function createQus($conn, $question, $ans, $choice1 = null, $choice2 = null, $ch
     mysqli_stmt_close($stmt);
 }
 
+function Submit($conn, $userName)
+{
+    $sql = "INSERT INTO submit (userName) values (?);";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../index.php?errpr=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "s", $userName);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+}
+
+function checkSubmited($conn, $userName)
+{
+    $sql = "SELECT * FROM submit WHERE userName = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../index.php?errpr=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "s", $userName);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if (mysqli_fetch_assoc($result)) {
+        return true;
+    } else {
+        return false;
+    }
+    mysqli_stmt_close($stmt);
+}
 
 function setSettings($conn, $quizDate, $quizDuration)
 {

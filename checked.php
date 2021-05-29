@@ -1,7 +1,8 @@
 <?php
-
+session_start();
 include("db/dbConnection.php");
 include("db/dbFunctions.inc.php");
+Submit($conn, $_SESSION['username']);
 if (isset($_POST['question1'])) {
 
 
@@ -36,7 +37,6 @@ function isWrongCorrect($conn, $question_no, $ansid)
 
 
 <?php
-session_start();
 
 if (!isset($_SESSION['username'])) {
     header('location:index.php');
