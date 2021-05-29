@@ -19,7 +19,7 @@
             <div class="nav-list"></div>
             <div class="nav-login">
                 <ul class="nav-list">
-                    <li><a href="registration.php">sign up <i class="fas fa-user-plus"></i></a></li>
+                    <li><a href="registration.php"> sign up <i class="fas fa-user-plus"></i></a></li>
                 </ul>
             </div>
         </nav>
