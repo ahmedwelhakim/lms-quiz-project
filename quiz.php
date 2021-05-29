@@ -32,6 +32,7 @@ include("db/dbFunctions.inc.php");
             <div class="nav-login">
                 <ul class="nav-list">
                     <li>Welcome <?php echo ($_SESSION['username']); ?></li>
+                
                 </ul>
             </div>
         </nav>
@@ -70,9 +71,7 @@ include("db/dbFunctions.inc.php");
                             }
                         }
                         ?>
-                        <div class="correct-answer">
-                            correct answer: <?php echo ($result1['choice' . $result1['answer']]); ?>
-                        </div>
+                        
                     <?php
                     $ansid = $ansid + $l;
                 }

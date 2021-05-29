@@ -25,6 +25,7 @@ include("db/dbFunctions.inc.php");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/19677acfad.js" crossorigin="anonymous"></script>
     <title>homepage</title>
 
 </head>
@@ -46,6 +47,7 @@ include("db/dbFunctions.inc.php");
                             header('location:index.php');
                         }
                         ?></li>
+                            <li><a href="index.php"> <i class="fas fa-sign-out-alt"></i> log out</a></li>
                 </ul>
             </div>
         </nav>
