@@ -167,6 +167,10 @@ function checkDub($conn, $userName)
     mysqli_stmt_close($stmt);
 }
 
+function getTimer ($conn){
+    return $conn->query("SELECT quizDuration FROM settings")->fetch_object()->quizDuration ;
+}
+
 function getQuestion($conn, $questionID)
 {
     $sql = "SELECT * FROM questions WHERE qid = ?;";

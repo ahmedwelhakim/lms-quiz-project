@@ -23,7 +23,7 @@ if ($_SESSION['userJob'] == "student") {
 </head>
 
 <body>
-<div class="nav-container">
+<div class="nav-container">rip
     <nav id="nav">
         <div class="logo">
             My LMS
